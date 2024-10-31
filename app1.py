@@ -30,6 +30,7 @@ if st.button('체크'):
   st.write(n//100, n%100)
   b[n//100] = n%100
       
+st.write(b[21108])
 
 a= st.number_input('학번을 입력해주세용',value = 0)
 if st.button('확인'):
