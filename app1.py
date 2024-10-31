@@ -2,6 +2,8 @@
 import streamlit as st      
 b = [0 for i in range(40000)]
 c = [[0 for i in range(50)]for i in range(11)]
+alpha = 0
+beta = 0
 # 제목 쓰기
 st.title('동생아 _________')  
 # 부제목 쓰기
@@ -27,10 +29,11 @@ with col1:
 n= st.number_input('수를 입력하세요', value = 0)
 # 버튼 생성 및 동작
 if st.button('체크'):
-  st.write(n//100, n%100)
-  b[n//100] = n%100
+  alpha = n//100
+  beta = n%100
       
-b = b
+b[alpha] = beta
+      
 st.write(b[21108])
 
 a= st.number_input('학번을 입력해주세용',value = 0)
