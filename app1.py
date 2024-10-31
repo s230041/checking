@@ -25,7 +25,7 @@ with col1:
 
 # 버튼 생성 및 동작
 if st.button('체크'):
-  a= st.input()
+  a= input()
   for i in range(len(a)):
     if(a[i] == ' '):
       b[int(a[:i:])] = a[i::]
@@ -33,6 +33,6 @@ if st.button('체크'):
       
 
 if st.button('확인'):
-  a= st.input()
+  a= input()
   if b[a] != 0 :
     print(b[a])
