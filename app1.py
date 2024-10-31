@@ -1,6 +1,6 @@
 # streamlit 라이브러리 불러오기
 import streamlit as st      
-b = {key : i for i in range(40000), value : 0}
+b = [0 for i in range(40000)]
 c = [[0 for i in range(50)]for i in range(11)]
 # 제목 쓰기
 st.title('동생아 _________')  
