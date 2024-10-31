@@ -26,9 +26,7 @@ with col1:
 # 버튼 생성 및 동작
 if st.button('체크'):
   n= st.number_input('수를 입력하세요', value = 0)
-  if(n != 0):
-      a = st.text_input('상태를 적으시오.')    
-      b[n] = a
+  b[n//100] = n%100
         
       
 
