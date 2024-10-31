@@ -1,6 +1,6 @@
 # streamlit 라이브러리 불러오기
 import streamlit as st      
-b = [None for i in range(40000)]
+b = [0]*40000
 c = [[None for i in range(50)]for i in range(11)]
 alpha = 0
 beta = 0
