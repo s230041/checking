@@ -34,5 +34,7 @@ if st.button('체크'):
 
 if st.button('확인'):
   a= st.text_input('학번을 입력해주세용',None,None)
-  if b[int(a)] != 0 :
+  if b[ord(a)] != 0 :
     st.write(b[a])
+  else:
+      
