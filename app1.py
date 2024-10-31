@@ -1,6 +1,6 @@
 # streamlit 라이브러리 불러오기
 import streamlit as st      
-b = [0 for i in range(40000)]
+b = {key : i for i in range(40000), value : 0}
 c = [[0 for i in range(50)]for i in range(11)]
 # 제목 쓰기
 st.title('동생아 _________')  
@@ -28,7 +28,7 @@ if st.button('체크'):
   a= st.text_input('학번과 상태를 입력해주세용',None, None)
   for i in range(len(a)):
     if(a[i] == ' '):
-      b[int(a[:i:])] = a[i::]
+      b[ord(a[:i:])] = a[i::]
       break
       
 
