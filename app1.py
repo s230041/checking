@@ -26,8 +26,8 @@ with col1:
 # 버튼 생성 및 동작
 if st.button('체크'):
   n= st.number_input('수를 입력하세요', value = 0)
+  st.write(n//100, n%100)
   b[n//100] = n%100
-        
       
 
 if st.button('확인'):
