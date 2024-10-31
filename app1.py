@@ -1,7 +1,7 @@
 # streamlit 라이브러리 불러오기
 import streamlit as st      
-b = [0 for i in range(40000)]
-c = [[0 for i in range(50)]for i in range(11)]
+b = [None for i in range(40000)]
+c = [[None for i in range(50)]for i in range(11)]
 alpha = 0
 beta = 0
 # 제목 쓰기
