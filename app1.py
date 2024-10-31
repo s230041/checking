@@ -31,8 +31,7 @@ n= st.number_input('수를 입력하세요', value = 0)
 if st.button('체크'):
   alpha = n//100
   beta = n%100
-      
-b[alpha] = beta
+  b[alpha] = beta
       
 st.write(b[21108])
 
