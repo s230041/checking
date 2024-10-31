@@ -36,9 +36,9 @@ b[alpha] = beta
       
 st.write(b[21108])
 
-a= st.number_input('학번을 입력해주세용',value = 0)
+n2 = st.number_input('학번을 입력해주세용',value = 0)
 if st.button('확인'): 
   st.write(b[21108])
-  if b[a] != 0 :
-    st.write(b[a])
+  if b[n2] != 0 :
+    st.write(b[n2])
       
