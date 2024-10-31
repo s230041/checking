@@ -15,7 +15,7 @@ col1, col2 = st.columns(2)
 with col1:
       st.subheader('*사용방법*')
       st.write('- 확인 : 출석체크 확인 (학번 입력)')
-      st.write('- 체크 : 출석체크 (학번 상태 입력 ex : 21108 출석)')
+      st.write('- 체크 : 출석체크 (학번 상태 입력 ex : 2110801)')
       st.write('- 반 전체 확인 : 11반중 선택')
       st.write('- 나만의 반 만들기 : 모든 학생의 학번 입력')
 
@@ -31,7 +31,7 @@ if st.button('체크'):
       
 
 if st.button('확인'):
-  a= st.text_input('학번을 입력해주세용',None,None)
-  if b[ord(a)] != 0 :
-    st.text(b[ord(a)])
+  a= st.number_input('학번을 입력해주세용',value = 0)
+  if b[a] != 0 :
+    st.write(b[a])
       
