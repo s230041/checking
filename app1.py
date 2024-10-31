@@ -25,11 +25,10 @@ with col1:
 
 # 버튼 생성 및 동작
 if st.button('체크'):
-  a= st.text_input('학번과 상태를 입력해주세용',None, None)  
-  for i in range(len(a)):
-    if(a[i] == ' '):
-      b[ord(a[:i:])] = a[i::]
-      break
+  n= st.number_input()
+  a = st.text_input('상태를 적으시오.')    
+  b[n] = a
+  break
       
 
 if st.button('확인'):
