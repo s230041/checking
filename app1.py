@@ -33,7 +33,8 @@ if st.button('체크'):
 st.write(b[21108])
 
 a= st.number_input('학번을 입력해주세용',value = 0)
-if st.button('확인'):
+if st.button('확인'): 
+  st.write(b[21108])
   if b[a] != 0 :
     st.write(b[a])
       
