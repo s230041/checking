@@ -38,7 +38,5 @@ st.write(b[21108])
 
 n2 = st.number_input('학번을 입력해주세용',value = 0)
 if st.button('확인'): 
-  st.write(b[21108])
-  if b[n2] != 0 :
-    st.write(b[n2])
+  st.write(b[n2])
       
