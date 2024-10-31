@@ -23,15 +23,16 @@ with col1:
 # 사용자의 입력을 받아서 a에 저장하기(초기값은 0)
 #a = st.number_input('____________', value= ____)  
 
+
+n= st.number_input('수를 입력하세요', value = 0)
 # 버튼 생성 및 동작
 if st.button('체크'):
-  n= st.number_input('수를 입력하세요', value = 0)
   st.write(n//100, n%100)
   b[n//100] = n%100
       
 
+a= st.number_input('학번을 입력해주세용',value = 0)
 if st.button('확인'):
-  a= st.number_input('학번을 입력해주세용',value = 0)
   if b[a] != 0 :
     st.write(b[a])
       
