@@ -25,7 +25,7 @@ with col1:
 
 # 버튼 생성 및 동작
 if st.button('체크'):
-  a= st.text_input()
+  a= st.text_input('학번과 상태를 입력해주세용',None, None)
   for i in range(len(a)):
     if(a[i] == ' '):
       b[int(a[:i:])] = a[i::]
@@ -33,6 +33,6 @@ if st.button('체크'):
       
 
 if st.button('확인'):
-  a= st.text_input()
-  if b[a] != 0 :
+  a= st.text_input('학번을 입력해주세용',None,None)
+  if b[int(a)] != 0 :
     print(b[a])
