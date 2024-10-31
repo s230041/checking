@@ -28,7 +28,7 @@ if st.button('체크'):
   n= st.number_input()
   a = st.text_input('상태를 적으시오.')    
   b[n] = a
-  break
+        
       
 
 if st.button('확인'):
