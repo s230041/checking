@@ -17,21 +17,8 @@ with col1:
       st.write('- 반 전체 확인 : 11반중 선택')
       st.write('- 나만의 반 만들기 : 모든 학생의 학번 입력')
 
-
-# 사용자의 입력을 받아서 a에 저장하기(초기값은 0)
-a = st.number_input('____________', value= ____)  
-
-
+a = st.selectbox('사용할 기능을 고르세요!', ['확인','체크','반 전체 확인', '나만의 반 만들기'])
 n= st.number_input('수를 입력하세요', value = 0)
-# 버튼 생성 및 동작
-if st.button('체크'):
-  alpha = n//100
-  beta = n%100
-  b[alpha] = beta
+if (a == '확인'):
       
-st.write(b[21108])
-
-n2 = st.number_input('학번을 입력해주세용',value = 0)
-if st.button('확인'): 
-  st.write(b[n2])
       
