@@ -24,7 +24,8 @@ if (a == '확인'):
 elif (a == '체크'):
       n = st.number_input('학번을 입력해주세요.', value = 0)
       w = st.text_input('상태를 입력해주세요.')
-      c[n//10000][(n//100)%100][n%10] = w
+      if st.button('체킹'): 
+            c[n//10000][(n//100)%100][n%10] = w
 
 elif (a == '반 전체 확인'):
       n1 = st.number_input('학년을 입력해주세요.',value = 0)
