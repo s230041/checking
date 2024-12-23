@@ -5,11 +5,7 @@ c = [[None for i in range(50)]for i in range(11)]
 alpha = 0
 beta = 0
 # 제목 쓰기
-st.title('동생아 _________')  
-# 부제목 쓰기
-st.subheader('오늘의 주제: _______')
-# 본문 쓰기
-st.write('음수?? ______않아!') 
+st.title('학생 체킹')   
 
 # 여러 개의 열(문단)을 생성
 col1, col2 = st.columns(2)       
@@ -23,7 +19,7 @@ with col1:
 
 
 # 사용자의 입력을 받아서 a에 저장하기(초기값은 0)
-#a = st.number_input('____________', value= ____)  
+a = st.number_input('____________', value= ____)  
 
 
 n= st.number_input('수를 입력하세요', value = 0)
