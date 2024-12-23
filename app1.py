@@ -1,7 +1,7 @@
 # streamlit 라이브러리 불러오기
 import streamlit as st      
 b = [{},{},{},{},{},{},{}]
-c = [[[0 for j in range(50)]for i in range(15)]for k in range(8)]
+c = [[[" " for j in range(50)]for i in range(15)]for k in range(8)]
 count = 0
 # 제목 쓰기
 st.title('학생 체킹')   
