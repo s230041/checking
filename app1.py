@@ -19,8 +19,8 @@ with col1:
 a = st.selectbox('작업할 기능을 고르세요',['확인','체크','반 전체 확인','나만의 반 만들기','나만의 반 확인'])
 if (a == '확인'):
       n = st.number_input('학번을 입력해주세요.',value = 0)
-      w = c[n//10000][(n//100)%100][n%10]
       if st.button('확인'):
+            w = c[n//10000][(n//100)%100][n%10]
             st.success(w)
 if (a == '체크'):
       n = st.number_input('학번을 입력해주세요.', value = 0)
