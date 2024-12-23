@@ -22,14 +22,15 @@ if (a == '확인'):
       n1 = n//10000
       n2 = (n//100)%100
       n3 = n%100
-      st.success(c[n1][n2][n3])
+      if st.button('확인'):
+            st.success(c[n1][n2][n3])
 if (a == '체크'):
       n = st.number_input('학번을 입력해주세요.', value = 0)
       w = st.text_input('상태를 입력해주세요.')
+      n1 = n//10000
+      n2 = (n//100)%100
+      n3 = n%100
       if st.button('체킹'):
-            n1 = n//10000
-            n2 = (n//100)%100
-            n3 = n%100
             c[n1][n2][n3] = w
             st.success(c[n1][n2][n3])
 
