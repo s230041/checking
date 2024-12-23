@@ -18,7 +18,6 @@ with col1:
       st.write('- 나만의 반 만들기 : 모든 학생의 학번 입력')
 
 a = st.selectbox('사용할 기능을 고르세요!', ['확인','체크','반 전체 확인', '나만의 반 만들기'])
-n= st.number_input('수를 입력하세요', value = 0)
 if (a == '확인'):
-      
+      n= st.number_input('수를 입력하세요', value = 0)
       
