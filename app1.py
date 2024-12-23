@@ -19,13 +19,19 @@ with col1:
 a = st.selectbox('작업할 기능을 고르세요',['확인','체크','반 전체 확인','나만의 반 만들기','나만의 반 확인'])
 if (a == '확인'):
       n = st.number_input('학번을 입력해주세요.',value = 0)
-      st.success(c[n//10000][(n//100)%100][n%10])
+      n1 = n//10000
+      n2 = (n//100)%100
+      n3 = n%100
+      st.success(c[n1][n2][n3])
 if (a == '체크'):
       n = st.number_input('학번을 입력해주세요.', value = 0)
       w = st.text_input('상태를 입력해주세요.')
-      if st.button('체킹'): 
-            c[n//10000][(n//100)%100][n%100] = w
-            st.success(c[n//10000][(n//100)%100][n%10])
+      if st.button('체킹'):
+            n1 = n//10000
+            n2 = (n//100)%100
+            n3 = n%100
+            c[n1][n2][n3] = w
+            st.success(c[n1][n2][n3])
 
 if (a == '반 전체 확인'):
       n1 = st.number_input('학년을 입력해주세요.',value = 0)
