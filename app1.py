@@ -1,7 +1,7 @@
 # streamlit 라이브러리 불러오기
 import streamlit as st      
 b = [{},{},{},{},{},{},{}]
-c = [[[None for j in range(50)]for i in range(15)]for k in range(8)]
+c = [[[0 for j in range(50)]for i in range(15)]for k in range(8)]
 count = 0
 # 제목 쓰기
 st.title('학생 체킹')   
@@ -43,7 +43,9 @@ elif (a == '나만의 반 만들기'):
             st.write('총 인원수',n,count-1,'반\n', b[count-1])
 elif(a == '나만의 반 확인'):
       n = st.number_input('반의 코드를 적으세요.',value = 0)
-      for i in b[n]
+      for i in b[n]:
+            st.write(i, c[i//10000][(i//100)%100][i%10])
+            
       
 
 
