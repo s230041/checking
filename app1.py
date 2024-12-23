@@ -1,6 +1,6 @@
 # streamlit 라이브러리 불러오기
 import streamlit as st      
-f 'b' not in st.session_state:
+if 'b' not in st.session_state:
     st.session_state.b = [[] for _ in range(8)]  # "나만의 반" 저장 리스트
 if 'c' not in st.session_state:
     st.session_state.c = [[[None for _ in range(50)] for _ in range(15)] for _ in range(8)]
