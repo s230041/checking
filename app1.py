@@ -16,37 +16,41 @@ with col1:
       st.write('- 반 전체 확인 : 11반중 선택')
       st.write('- 나만의 반 만들기 : 모든 학생의 학번 입력')
       st.write('- 나만의 반 확인')
-
-if st.button('확인'):
+a = st.selectbox('작업할 기능을 고르세요',['확인','체크','반 전체 확인','나만의 반 만들기','나만의 반 확인'])
+if (a == '확인')
       n = st.number_input('학번을 입력해주세요.',value = 0)
       w = c[n//10000][(n//100)%100][n%10]
-      st.success(w)
-if st.button('체크'):
+      if st.button('확인'):
+            st.success(w)
+if (a == '체크'):
       n = st.number_input('학번을 입력해주세요.', value = 0)
       w = st.text_input('상태를 입력해주세요.')
       if st.button('체킹'): 
             c[n//10000][(n//100)%100][n%10] = w
             st.success(w)
 
-if st.button('반 전체 확인'):
+if (a == '반 전체 확인'):
       n1 = st.number_input('학년을 입력해주세요.',value = 0)
       n2 = st.number_input('반을 입력해주세요.', value = 0)
-      for i in c[n1][n2]:
-            if(i != 0):
-                  st.write(i)
+      if st.button('확인'):
+            for i in c[n1][n2]:
+                  if(i != 0):
+                        st.write(i)
                   
-if st.button('나만의 반 만들기'):
+if (a == '나만의 반 만들기'):
       n = st.number_input('반 총 인원수를 입력해주세요.', value = 0)
       for i in range(n):
             n1 = st.number_input('학번을 입력해주세요.', value = 0)
-            b[count].append(n1)
+            if st.button('입력'):
+                  b[count].append(n1)
       count+=1
       with col2:
             st.write('총 인원수',n,count-1,'반\n', b[count-1])
-if st.button('나만의 반 확인'):
+if (a == '나만의 반 확인'):
       n = st.number_input('반의 코드를 적으세요.',value = 0)
-      for i in b[n]:
-            st.write(i, c[i//10000][(i//100)%100][i%10])
+      if st.button('확인'):
+            for i in b[n]:
+                  st.write(i, c[i//10000][(i//100)%100][i%10])
             
       
 
