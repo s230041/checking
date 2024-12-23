@@ -1,6 +1,6 @@
 # streamlit 라이브러리 불러오기
 import streamlit as st      
-b = [{},{},{},{},{},{},{}]
+b = [[],[],[],[],[],[],[]]
 c = [[[" " for j in range(50)]for i in range(15)]for k in range(8)]
 count = 0
 # 제목 쓰기
@@ -17,26 +17,25 @@ with col1:
       st.write('- 나만의 반 만들기 : 모든 학생의 학번 입력')
       st.write('- 나만의 반 확인')
 
-a = st.selectbox('사용할 기능을 고르세요!', ['확인','체크','반 전체 확인', '나만의 반 만들기'])
-if (a == '확인'):
+if st.button('확인'):
       n = st.number_input('학번을 입력해주세요.',value = 0)
       w = c[n//10000][(n//100)%100][n%10]
       st.success(w)
-elif (a == '체크'):
+elif st.button('체크'):
       n = st.number_input('학번을 입력해주세요.', value = 0)
       w = st.text_input('상태를 입력해주세요.')
       if st.button('체킹'): 
             c[n//10000][(n//100)%100][n%10] = w
             st.success(w)
 
-elif (a == '반 전체 확인'):
+elif st.button('반 전체 확인'):
       n1 = st.number_input('학년을 입력해주세요.',value = 0)
       n2 = st.number_input('반을 입력해주세요.', value = 0)
       for i in c[n1][n2]:
             if(i != 0):
                   st.write(i)
                   
-elif (a == '나만의 반 만들기'):
+elif st.button('나만의 반 만들기'):
       n = st.number_input('반 총 인원수를 입력해주세요.', value = 0)
       for i in range(n):
             n1 = st.number_input('학번을 입력해주세요.', value = 0)
