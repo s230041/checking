@@ -47,20 +47,20 @@ if (a == '반 전체 확인'):
       n1 = st.number_input('학년을 입력해주세요.',value = 0)
       n2 = st.number_input('반을 입력해주세요.', value = 0)
       if st.button('확인'):
-            st.write(f"학년 {학년}, 반 {반} 출석 상태:")
+            st.write(f"학년 {n1}, 반 {n2} 출석 상태:")
             for i,j in enumerate(c[n1][n2]):
                   st.write(f"{i}번 : {j}")
                   
 if a == '나만의 반 만들기':
     n = st.number_input('반 총 인원수를 입력해주세요.', value=0, step=1)
     if st.button('반 생성'):
-        학번_리스트 = []
+        n_li = []
         for i in range(n):
-            학번 = st.number_input(f'{i + 1}번 학번 입력:', value=0, step=1, key=f"student_{i}")
-            학번_리스트.append(학번)
-        b[count] = 학번_리스트
+            n = st.number_input(f'{i + 1}번 학번 입력:', value=0, step=1, key=f"student_{i}")
+            n_li.append(n)
+        b[count] = n_li
         st.session_state.count += 1
-        st.write(f"{count}번 반 생성 완료. 학생 명단: {학번_리스트}")
+        st.write(f"{count}번 반 생성 완료. 학생 명단: {n_li}")
           
 if a == '나만의 반 확인':
     n = st.number_input('반의 코드를 적으세요.', value=0, step=1)
@@ -69,11 +69,11 @@ if a == '나만의 반 확인':
             st.warning("해당 반 정보가 없습니다.")
         else:
             st.write(f"{n}번 반 학생 상태:")
-            for 학번 in b[n]:
-                학년 = 학번 // 10000
-                반 = (학번 // 100) % 100
-                번호 = 학번 % 100
-                상태 = c[학년][반][번호]
-                st.write(f"{학번}: {상태 if 상태 else '상태 없음'}")
+            for nn in b[n]:
+                n1 = nn // 10000
+                n2 = (nn // 100) % 100
+                n3 = nn % 100
+                n4 = c[n1][n2][n3]
+                st.write(f"{nn}: {n4 if n4 else '상태 없음'}")
 
 
