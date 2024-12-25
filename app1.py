@@ -1,16 +1,31 @@
 # streamlit 라이브러리 불러오기
-import streamlit as st      
-if 'b' not in st.session_state:
-    st.session_state.b = [[] for _ in range(8)]  # "나만의 반" 저장 리스트
-if 'c' not in st.session_state:
-    st.session_state.c = [[[None for _ in range(50)] for _ in range(15)] for _ in range(8)]
-if 'count' not in st.session_state:
-    st.session_state.count = 0
+import streamlit as st
+import json
+import os
 
+# 데이터 저장 파일 경로
+DATA_FILE = "shared_data.json"
 
-b = st.session_state.b
-c = st.session_state.c
-count = st.session_state.count
+# 데이터 초기화 또는 로드
+if not os.path.exists(DATA_FILE):
+    with open(DATA_FILE, "w") as f:
+        json.dump({"b": [[] for _ in range(8)], "c": [[[None for _ in range(50)] for _ in range(15)] for _ in range(8)]}, f)
+
+# 데이터 로드 함수
+def load_data():
+    with open(DATA_FILE, "r") as f:
+        return json.load(f)
+
+# 데이터 저장 함수
+def save_data(data):
+    with open(DATA_FILE, "w") as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+
+# 데이터 로드
+data = load_data()
+b = data["b"]
+c = data["c"]
+
 
 # 제목 쓰기
 st.title('학생 체킹')   
@@ -41,6 +56,8 @@ if (a == '체크'):
             n2 = (n//100)%100
             n3 = n%100
             c[n1][n2][n3] = w
+            data["c"] = c
+            save_data(data)
             st.success(f"{n}번 상태 저장: {w}")
 
 if (a == '반 전체 확인'):
@@ -58,8 +75,9 @@ if a == '나만의 반 만들기':
         for i in range(n):
             n = st.number_input(f'{i + 1}번 학번 입력:', value=0, step=1, key=f"student_{i}")
             n_li.append(n)
-        b[count] = n_li
-        st.session_state.count += 1
+        b.append(n_li)
+        data["b"] = b
+        save_data(data)
         st.write(f"{count}번 반 생성 완료. 학생 명단: {n_li}")
           
 if a == '나만의 반 확인':
