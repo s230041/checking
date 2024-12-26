@@ -37,10 +37,6 @@ def load_user_data():
     with open(USER_DATA_FILE, "r") as f:
         return json.load(f)
 
-# 사용자 데이터 로드 함수
-def load_user_data():
-    with open(USER_DATA_FILE, "r") as f:
-        return json.load(f)
 
 # 사용자 데이터 저장 함수
 def save_user_data(users):
