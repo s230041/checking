@@ -157,17 +157,18 @@ else :
             if (len([x for x in st.session_state.b if x]) >= 8):
                 st.warning("반을 생성할 수 없습니다. (8개 모두 만들었습니다.)")
             else:
-                n_li = []
-                for i in range(n):
-                    nn = st.number_input(f'{i + 1}번 학번 입력:', value=0, step=1, key=f"student_{len(st.session_state.b)}_{i+1}")
-                    n_li.append(nn)
-                for idx in range(len(st.session_state.b)):
-                    if not st.session_state.b[idx]:
-                        st.session_state.b[idx] = n_li
-                        break
-                save_data(data)
-                output_containers[len([x for x in st.session_state.b if x])  - 1].write(f"{len([x for x in st.session_state.b if x]) - 1}번 반 생성 완료. 학생 명단: {n_li}")
-    
+                input_data = st.text_area('학번들을 입력해주세요 (쉼표로 구분)', "")
+                if input_data:
+                    n_li = [int(x.strip()) for x in input_data.split(',')]  # 쉼표로 구분된 학번을 리스트로 변환
+                    if len(n_li) == n:  # 입력된 학번 수가 반 인원 수와 일치하면 반을 생성
+                        for idx in range(len(st.session_state.b)):
+                            if not st.session_state.b[idx]:
+                                st.session_state.b[idx] = n_li
+                                break
+                        save_data(data)
+                        output_containers[len([x for x in st.session_state.b if x]) - 1].write(f"{len([x for x in st.session_state.b if x]) - 1}번 반 생성 완료. 학생 명단: {n_li}")
+                    else:
+                        st.warning(f"입력된 학번 수가 반 인원수와 일치하지 않습니다. {n}명의 학번을 입력해주세요.")
               
     if a == '나만의 반 확인':
         n = st.number_input('반의 코드를 적으세요.', value=0, step=1)
