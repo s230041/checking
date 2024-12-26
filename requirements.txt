@@ -1,8 +1,8 @@
 streamlit
+json
+os
 joblib
 pandas
 numpy
 matplotlib
 scikit-learn
-json
-os
