@@ -14,11 +14,6 @@ if not os.path.exists(DATA_FILE):
         json.dump({ "c": [[[None for _ in range(50)] for _ in range(15)] for _ in range(8)]}, f)
 
 
-# 세션 ID 초기화 (고유 사용자 ID 생성)
-if "user_id" not in st.session_state:
-    # 사용자 고유 ID 생성 (예: 세션 ID, 해시값 등)
-    session_key = str(st.session_state.session_id if "session_id" in st.session_state else hashlib.md5(str(st.session_state).encode()).hexdigest())
-    st.session_state.user_id = session_key  # 각 사용자마다 고유 ID 할당
 
 if 'b' not in st.session_state:
     st.session_state.b = [[] for _ in range(8)]
