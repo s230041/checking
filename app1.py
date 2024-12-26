@@ -89,7 +89,6 @@ def show_login_form(users):
         if user_id_input in users:
             st.session_state.user_id = user_id_input
             st.session_state.logged_in = True  # 로그인 상태 변경
-            st.experimental_rerun()  # 로그인 후 화면 새로 고침
         else:
             st.warning("잘못된 아이디입니다. 다시 시도하세요.")
 
