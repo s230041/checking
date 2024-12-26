@@ -6,8 +6,8 @@ import random
 import string
 
 # 데이터 저장 파일 경로
-DATA_FILE = "shared_data.json"'
-USER_DATA_FILE = "users_data.json
+DATA_FILE = "shared_data.json"
+USER_DATA_FILE = "users_data.json"
 
 # 데이터 초기화 또는 로드
 if not os.path.exists(DATA_FILE):
