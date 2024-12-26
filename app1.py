@@ -166,7 +166,7 @@ else :
                         st.session_state.b[idx] = n_li
                         break
                 save_data(data)
-                output_containers[len(st.session_state.b) - 1].write(f"{len(st.session_state.b) - 1}번 반 생성 완료. 학생 명단: {n_li}")
+                output_containers[len([x for x in st.session_state.b if x])  - 1].write(f"{len([x for x in st.session_state.b if x]) - 1}번 반 생성 완료. 학생 명단: {n_li}")
     
               
     if a == '나만의 반 확인':
