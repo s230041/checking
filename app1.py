@@ -151,19 +151,19 @@ else :
                 for i,j in enumerate(c[n1][n2]):
                       st.write(f"{i}번 : {j}")
                       
-    if a == '나만의 반 만들기':
+    if (a == '나만의 반 만들기'):
         n = st.number_input('반 총 인원수를 입력해주세요.', value=0, step=1)
         if st.button('반 생성'):
-            if len(b) >= 8:
+            if (len(st.session_state.b) >= 8):
                 st.warning("반을 생성할 수 없습니다. (8개 모두 만들었습니다.)")
             else:
                 n_li = []
                 for i in range(n):
                     nn = st.number_input(f'{i + 1}번 학번 입력:', value=0, step=1, key=f"student_{i}")
                     n_li.append(nn)
-                b[len(b)] = (n_li)
+                st.session_state.b[len(st.session_state.b)] = (n_li)
                 save_data(data)
-                output_containers[len(b) - 1].write(f"{len(b) - 1}번 반 생성 완료. 학생 명단: {n_li}")
+                output_containers[len(st.session_state.b) - 1].write(f"{len(st.session_state.b) - 1}번 반 생성 완료. 학생 명단: {n_li}")
     
               
     if a == '나만의 반 확인':
