@@ -154,14 +154,17 @@ else :
     if (a == '나만의 반 만들기'):
         n = st.number_input('반 총 인원수를 입력해주세요.', value=0, step=1)
         if st.button('반 생성'):
-            if (len(st.session_state.b) >= 8):
+            if (len([x for x in st.session_state.b if x]) >= 8):
                 st.warning("반을 생성할 수 없습니다. (8개 모두 만들었습니다.)")
             else:
                 n_li = []
                 for i in range(n):
                     nn = st.number_input(f'{i + 1}번 학번 입력:', value=0, step=1, key=f"student_{i}")
                     n_li.append(nn)
-                st.session_state.b[len(st.session_state.b)] = (n_li)
+                for idx in range(len(st.session_state.b)):
+                    if not st.session_state.b[idx]:
+                        st.session_state.b[idx] = n_li
+                        break
                 save_data(data)
                 output_containers[len(st.session_state.b) - 1].write(f"{len(st.session_state.b) - 1}번 반 생성 완료. 학생 명단: {n_li}")
     
@@ -170,7 +173,7 @@ else :
         n = st.number_input('반의 코드를 적으세요.', value=0, step=1)
         if st.button('확인'):
             b = st.session_state.b
-            if n >= len(b) or not b[n]:
+            if  n < 0 or n >=len([x for x in st.session_state.b if x]) or not b[n]:
                 st.warning("해당 반 정보가 없습니다.")
             else:
                 st.write(f"{n}번 반 학생 상태:")
@@ -185,7 +188,7 @@ else :
         n = st.number_input('삭제할 반의 코드를 입력하세요.', value=0, step=1)
         if st.button('삭제'):
             b = st.session_state.b
-            if n < 0 or n >= len(b) or not b[n]:
+            if n < 0 or n >= len([x for x in st.session_state.b if x]) or not b[n]:
                 st.warning("해당 반 정보가 없거나 이미 삭제되었습니다.")
             else:
                 deleted_class = b[n]
