@@ -74,13 +74,13 @@ def show_login_form(users):
     # 새 아이디 생성 버튼 클릭 시 랜덤 아이디 생성
     if create_id_button:
         user_id_text = st.text_input("고유 아이디를 입력하세요.")
+        user_id_general = generate_random_id()
         if st.button("만들기"):
-            user_id_general = generate_random_id()
             user_id_input = user_id_general + user_id_text
             users.append(user_id_input)
             save_user_data(users) 
             st.session_state.user_id = user_id_input
-            st.write(f"생성된 아이디: {user_id_input}")
+            st.sussess(f"생성된 아이디: {user_id_input}")
             st.session_state.logged_in = True
         
         
