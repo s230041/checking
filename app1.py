@@ -68,19 +68,20 @@ def generate_random_id():
 def show_login_form(users):
     st.subheader("로그인 / 아이디 생성")
 
-    user_id_input = st.text_input("고유 ID 입력", key="login_id")
+    user_id_input = st.text_input("아이디를 입력하세요.", key="login_id")
     create_id_button = st.button("새 아이디 만들기")
-    
+
+    st.write("\n\n 새 아이디를 만들 분은 고유 아이디를 입력해주세요.")
+    user_id_text = st.text_input("고유 아이디를 입력하세요.")
     # 새 아이디 생성 버튼 클릭 시 랜덤 아이디 생성
     if create_id_button:
-        user_id_text = st.text_input("고유 아이디를 입력하세요.")
-        user_id_general = generate_random_id()
-        if st.button("만들기"):
+        if user_id_text:
+            user_id_general = generate_random_id()
             user_id_input = user_id_general + user_id_text
             users.append(user_id_input)
             save_user_data(users) 
             st.session_state.user_id = user_id_input
-            st.sussess(f"생성된 아이디: {user_id_input}")
+            st.write(f"생성된 아이디: {user_id_input}")
             st.session_state.logged_in = True
         
         
