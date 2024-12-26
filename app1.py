@@ -9,6 +9,12 @@ import string
 DATA_FILE = "shared_data.json"
 USER_DATA_FILE = "users_data.json"
 
+def load_user_data():
+    if not os.path.exists(USER_DATA_FILE):
+        return []  # 파일이 없으면 빈 리스트 반환
+    with open(USER_DATA_FILE, "r") as f:
+        return json.load(f)
+
 # 데이터 초기화 또는 로드
 if not os.path.exists(DATA_FILE):
     with open(DATA_FILE, "w") as f:
