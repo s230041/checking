@@ -9,11 +9,6 @@ import string
 DATA_FILE = "shared_data.json"
 USER_DATA_FILE = "users_data.json"
 
-def load_user_data():
-    if not os.path.exists(USER_DATA_FILE):
-        return []  # 파일이 없으면 빈 리스트 반환
-    with open(USER_DATA_FILE, "r") as f:
-        return json.load(f)
 
 # 데이터 초기화 또는 로드
 if not os.path.exists(DATA_FILE):
@@ -34,6 +29,13 @@ def load_data():
 def save_data(data):
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
+
+
+def load_user_data():
+    if not os.path.exists(USER_DATA_FILE):
+        return []  # 파일이 없으면 빈 리스트 반환
+    with open(USER_DATA_FILE, "r") as f:
+        return json.load(f)
 
 # 사용자 데이터 로드 함수
 def load_user_data():
