@@ -76,6 +76,8 @@ def show_login_form(users):
         save_user_data(users) 
         st.session_state.user_id = user_id_input
         st.write(f"생성된 아이디: {user_id_input}")
+        st.session_state.logged_in = True
+        st.experimental_rerun()
         
         
 
@@ -156,6 +158,7 @@ else :
                     nn = st.number_input(f'{i + 1}번 학번 입력:', value=0, step=1, key=f"student_{i}")
                     n_li.append(nn)
                 b[len(b)] = (n_li)
+                save_data(data)
                 output_containers[len(b) - 1].write(f"{len(b) - 1}번 반 생성 완료. 학생 명단: {n_li}")
     
               
