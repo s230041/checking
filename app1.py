@@ -159,7 +159,7 @@ else :
             else:
                 n_li = []
                 for i in range(n):
-                    nn = st.number_input(f'{i + 1}번 학번 입력:', value=0, step=1, key=f"student_{len(st.session_state.b)}_{i}")
+                    nn = st.number_input(f'{i + 1}번 학번 입력:', value=0, step=1, key=f"student_{len(st.session_state.b)}_{i+1}")
                     n_li.append(nn)
                 for idx in range(len(st.session_state.b)):
                     if not st.session_state.b[idx]:
