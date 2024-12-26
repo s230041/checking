@@ -81,7 +81,6 @@ def show_login_form(users):
         st.session_state.user_id = user_id_input
         st.write(f"생성된 아이디: {user_id_input}")
         st.session_state.logged_in = True
-        st.experimental_rerun()
         
         
 
