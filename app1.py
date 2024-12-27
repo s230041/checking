@@ -218,7 +218,8 @@ else :
                         for idx in range(len([x for x in b if x])):
                             if not b[idx]:
                                 b[idx] = n_li
-                                save_user_data_class(b) output_containers[len([x for x in b if x]) - 1].write(f"{len([x for x in b if x]) - 1}번 반 생성 완료. 학생 명단: {n_li}")
+                                save_user_data_class(b) 
+                                output_containers[len([x for x in b if x]) - 1].write(f"{len([x for x in b if x]) - 1}번 반 생성 완료. 학생 명단: {n_li}")
                                 break
                     else:
                         st.warning(f"입력된 학번 수가 반 인원수와 일치하지 않습니다. {n}명의 학번을 입력해주세요.")
