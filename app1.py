@@ -34,24 +34,71 @@ def save_data(data):
 def load_user_data_id():
     if not os.path.exists(USER_DATA_FILE):
         return []  # 파일이 없으면 빈 리스트 반환
-    with open(USER_DATA_FILE, "r") as f:
-        data = json.load(f)
-        return data.get("d", [])  # "d" 키가 없으면 빈 리스트 반환
+    
+    try:
+        with open(USER_DATA_FILE, "r") as f:
+            data = json.load(f)
+            return data.get("d", []) if isinstance(data, dict) else []
+    except json.JSONDecodeError:
+        print(f"ERROR: {USER_DATA_FILE} 파일의 JSON 형식이 잘못되었습니다.")
+        return []
+    except Exception as e:
+        print(f"ERROR: {USER_DATA_FILE} 파일 읽는 중 오류 발생: {e}")
+        return []
 
 def load_user_data_class():
     if not os.path.exists(USER_DATA_FILE):
-        return [[]for _ in range(8)]  # 파일이 없으면 빈 리스트 반환
-    with open(USER_DATA_FILE, "r") as f:
-        data = json.load(f)
-        return data.get("b", [])
-# 사용자 데이터 저장 함수
-def save_user_data_id(users):
-    with open(USER_DATA_FILE, "w") as f:
-        json.dump({"d":users}, f, ensure_ascii=False, indent=4)
+        return [[] for _ in range(8)]  # 파일이 없으면 기본값 반환
+    
+    try:
+        with open(USER_DATA_FILE, "r") as f:
+            data = json.load(f)
+            return data.get("b", [[] for _ in range(8)]) if isinstance(data, dict) else [[] for _ in range(8)]
+    except json.JSONDecodeError:
+        print(f"ERROR: {USER_DATA_FILE} 파일의 JSON 형식이 잘못되었습니다.")
+        return [[] for _ in range(8)]
+    except Exception as e:
+        print(f"ERROR: {USER_DATA_FILE} 파일 읽는 중 오류 발생: {e}")
+        return [[] for _ in range(8)]
 
-def save_user_data_class(users):
-    with open(USER_DATA_FILE, "w") as f:
-        json.dump({"b" : users}, f, ensure_ascii = False, indent = 4)
+
+# 사용자 데이터 저장 함수
+def save_user_data_id(users_d):
+    try:
+        # 기존 데이터 로드
+        if os.path.exists(USER_DATA_FILE):
+            with open(USER_DATA_FILE, "r") as f:
+                data = json.load(f)
+        else:
+            data = {}
+
+        # "d" 데이터 업데이트
+        data["d"] = users_d
+
+        # JSON 파일에 저장
+        with open(USER_DATA_FILE, "w") as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+    except Exception as e:
+        print(f"ERROR: 사용자 데이터를 저장하는 중 오류 발생: {e}")
+
+def save_user_data_class(users_b):
+    try:
+        # 기존 데이터 로드
+        if os.path.exists(USER_DATA_FILE):
+            with open(USER_DATA_FILE, "r") as f:
+                data = json.load(f)
+        else:
+            data = {}
+
+        # "b" 데이터 업데이트
+        data["b"] = users_b
+
+        # JSON 파일에 저장
+        with open(USER_DATA_FILE, "w") as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+    except Exception as e:
+        print(f"ERROR: 사용자 데이터를 저장하는 중 오류 발생: {e}")
+
 
 # 데이터 로드
 data = load_data()
