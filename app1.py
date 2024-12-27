@@ -32,11 +32,15 @@ def save_data(data):
 
 
 def load_user_data_id():
+    if not os.path.exists(USER_DATA_FILE):
+        return []  # 파일이 없으면 빈 리스트 반환
     with open(USER_DATA_FILE, "r") as f:
         data = json.load(f)
         return data.get("d", [])  # "d" 키가 없으면 빈 리스트 반환
 
 def load_user_data_class():
+    if not os.path.exists(USER_DATA_FILE):
+        return [[]for _ in range(8)]  # 파일이 없으면 빈 리스트 반환
     with open(USER_DATA_FILE, "r") as f:
         data = json.load(f)
         return data.get("b", [])
