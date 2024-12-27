@@ -17,7 +17,7 @@ if not os.path.exists(DATA_FILE):
 
 if not os.path.exists(USER_DATA_FILE):
     with open(USER_DATA_FILE, "w") as f:
-        json.dump({ "b": [[]for _ in range(8)], "d" : []}, f)
+        json.dump({ "b": [[0]for _ in range(8)], "d" : [None]}, f)
 
 
 # 데이터 로드 함수
