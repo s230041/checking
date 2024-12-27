@@ -219,7 +219,6 @@ else :
                             if not b[idx]:
                                 b[idx] = n_li
                                 break
-                        save_data(data)
                         save_user_data_class(b) 
                         output_containers[len([x for x in b if x]) - 1].write(f"{len([x for x in b if x]) - 1}번 반 생성 완료. 학생 명단: {n_li}")
                     else:
@@ -243,7 +242,7 @@ else :
     if a == '나만의 반 삭제':
         n = st.number_input('삭제할 반의 코드를 입력하세요.', value=0, step=1)
         if st.button('삭제'):
-            b = load_user_data_ckass()
+            b = load_user_data_cㅣass()
             if n < 0 or n >= len([x for x in st.session_state.b if x]) or not b[n]:
                 st.warning("해당 반 정보가 없거나 이미 삭제되었습니다.")
             else:
