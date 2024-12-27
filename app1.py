@@ -35,15 +35,15 @@ def load_user_data_id():
     try:
         with open(USER_DATA_FILE, "r") as f:
             data = json.load(f)
-            print("USER_DATA_FILE 내용:", data)  # 파일 내용 출력
-    except Exception as e:
-        print("파일 로드 오류:", e)
+        return data.get("d", [])  # "d" 키가 없으면 빈 리스트 반환
+    except (json.JSONDecodeError, FileNotFoundError):  # JSON 오류 또는 파일 없음
+        return []
 
 def load_user_data_class():
-    with open(USER_DATA_FILE, "r") as f:
-        data = json.load(f)
-        return data.get("b", [])
-
+    try :
+        with open(USER_DATA_FILE, "r") as f:
+            data = json.load(f)
+            return data.get("b", [])
 # 사용자 데이터 저장 함수
 def save_user_data_id(users):
     with open(USER_DATA_FILE, "w") as f:
