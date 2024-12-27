@@ -34,12 +34,12 @@ def save_data(data):
 def load_user_data_id():
     with open(USER_DATA_FILE, "r") as f:
         data = json.load(f)
-        return data["d"]
+        return data.get("d",[])
 
 def load_user_data_class():
     with open(USER_DATA_FILE, "r") as f:
         data = json.load(f)
-        return data["b"]
+        return data.get("b", [])
 
 # 사용자 데이터 저장 함수
 def save_user_data_id(users):
