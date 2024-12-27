@@ -79,7 +79,7 @@ def save_user_data_id(users_d):
         with open(USER_DATA_FILE, "w") as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
     except Exception as e:
-        s.write(f"ERROR: 사용자 데이터를 저장하는 중 오류 발생: {e}")
+        st.write(f"ERROR: 사용자 데이터를 저장하는 중 오류 발생: {e}")
 
 def save_user_data_class(users_b):
     try:
@@ -97,7 +97,7 @@ def save_user_data_class(users_b):
         with open(USER_DATA_FILE, "w") as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
     except Exception as e:
-        s.write(f"ERROR: 사용자 데이터를 저장하는 중 오류 발생: {e}")
+        st.write(f"ERROR: 사용자 데이터를 저장하는 중 오류 발생: {e}")
 
 
 # 데이터 로드
