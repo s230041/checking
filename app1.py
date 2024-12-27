@@ -44,6 +44,8 @@ def load_user_data_class():
         with open(USER_DATA_FILE, "r") as f:
             data = json.load(f)
             return data.get("b", [])
+    except (json.JSONDecodeError, FileNotFoundError):  # JSON 오류 또는 파일 없음
+        return [[]for _ in range(8)]
 # 사용자 데이터 저장 함수
 def save_user_data_id(users):
     with open(USER_DATA_FILE, "w") as f:
