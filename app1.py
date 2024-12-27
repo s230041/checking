@@ -32,9 +32,12 @@ def save_data(data):
 
 
 def load_user_data_id():
-    with open(USER_DATA_FILE, "r") as f:
-        data = json.load(f)
-        return data.get("d",[])
+    try:
+        with open(USER_DATA_FILE, "r") as f:
+            data = json.load(f)
+            print("USER_DATA_FILE 내용:", data)  # 파일 내용 출력
+    except Exception as e:
+        print("파일 로드 오류:", e)
 
 def load_user_data_class():
     with open(USER_DATA_FILE, "r") as f:
