@@ -15,10 +15,10 @@ if not os.path.exists(DATA_FILE):
     with open(DATA_FILE, "w") as f:
         json.dump({ "c": [[[None for _ in range(50)] for _ in range(15)] for _ in range(8)]}, f)
 
+if not os.path.exists(USER_DATA_FILE):
+    with open(USER_DATA_FILE, "w") as f:
+        json.dump({ "b": [[]for _ in range(8)], "d" : []}, f)
 
-
-if 'b' not in st.session_state:
-    st.session_state.b = [[] for _ in range(8)]
 
 # 데이터 로드 함수
 def load_data():
@@ -31,17 +31,24 @@ def save_data(data):
         json.dump(data, f, ensure_ascii=False, indent=4)
 
 
-def load_user_data():
-    if not os.path.exists(USER_DATA_FILE):
-        return []  # 파일이 없으면 빈 리스트 반환
+def load_user_data_id():
     with open(USER_DATA_FILE, "r") as f:
-        return json.load(f)
+        data = json.load(f)
+        return data["d"]
 
+def load_user_data_class():
+    with open(USER_DATA_FILE, "r") as f:
+        data = json.load(f)
+        return data["b"]
 
 # 사용자 데이터 저장 함수
-def save_user_data(users):
+def save_user_data_id(users):
     with open(USER_DATA_FILE, "w") as f:
-        json.dump(users, f, ensure_ascii=False, indent=4)
+        json.dump({"d":users}, f, ensure_ascii=False, indent=4)
+
+def save_user_data_class(users):
+    with open(USER_DATA_FILE, "w") as f:
+        json.dump({"b" : users}, f, ensure_ascii = False, indent = 4)
 
 # 데이터 로드
 data = load_data()
@@ -69,21 +76,21 @@ def show_login_form(users):
     st.subheader("로그인 / 아이디 생성")
 
     user_id_input = st.text_input("아이디를 입력하세요.", key="login_id")
-    create_id_button = st.button("새 아이디 만들기")
 
     st.write("\n\n 새 아이디를 만들 분은 고유 아이디를 입력해주세요.")
     user_id_text = st.text_input("고유 아이디를 입력하세요.")
     # 새 아이디 생성 버튼 클릭 시 랜덤 아이디 생성
+        
+    create_id_button = st.button("새 아이디 만들기")
     if create_id_button:
         if user_id_text:
             user_id_general = generate_random_id()
             user_id_input = user_id_general + user_id_text
             users.append(user_id_input)
-            save_user_data(users) 
+            save_user_data_id(users) 
             st.session_state.user_id = user_id_input
             st.write(f"생성된 아이디: {user_id_input}")
             st.session_state.logged_in = True
-        
         
 
     # 로그인 버튼 클릭 시
@@ -96,13 +103,9 @@ def show_login_form(users):
 
 # 세션에 로그인 여부 확인
 if not login():
-    users = load_user_data()  # 저장된 사용자 목록을 불러옴
+    users = load_user_data_id()  # 저장된 사용자 목록을 불러옴
     show_login_form(users)  # 로그인 화면을 띄움
 else :
-    
-    if "b" not in st.session_state:
-        st.session_state.user_b = [[] for _ in range(8)]
-    
     
     output_containers = [st.empty() for _ in range(8)]
     
@@ -153,28 +156,30 @@ else :
                       
     if (a == '나만의 반 만들기'):
         n = st.number_input('반 총 인원수를 입력해주세요.', value=0, step=1)
+        b = load_user_data_class()
         if st.button('반 생성'):
-            if (len([x for x in st.session_state.b if x]) >= 8):
+            if (len([x for x in b if x]) >= 8):
                 st.warning("반을 생성할 수 없습니다. (8개 모두 만들었습니다.)")
             else:
                 input_data = st.text_area('학번들을 입력해주세요 (쉼표로 구분)', "")
                 if input_data:
                     n_li = [int(x.strip()) for x in input_data.split(',')]  # 쉼표로 구분된 학번을 리스트로 변환
                     if len(n_li) == n:  # 입력된 학번 수가 반 인원 수와 일치하면 반을 생성
-                        for idx in range(len(st.session_state.b)):
-                            if not st.session_state.b[idx]:
-                                st.session_state.b[idx] = n_li
+                        for idx in range(len([x for x in b if x])):
+                            if not b[idx]:
+                                b[idx] = n_li
                                 break
                         save_data(data)
-                        output_containers[len([x for x in st.session_state.b if x]) - 1].write(f"{len([x for x in st.session_state.b if x]) - 1}번 반 생성 완료. 학생 명단: {n_li}")
+                        save_user_data_class(b) 
+                        output_containers[len([x for x in b if x]) - 1].write(f"{len([x for x in b if x]) - 1}번 반 생성 완료. 학생 명단: {n_li}")
                     else:
                         st.warning(f"입력된 학번 수가 반 인원수와 일치하지 않습니다. {n}명의 학번을 입력해주세요.")
               
     if a == '나만의 반 확인':
         n = st.number_input('반의 코드를 적으세요.', value=0, step=1)
         if st.button('확인'):
-            b = st.session_state.b
-            if  n < 0 or n >=len([x for x in st.session_state.b if x]) or not b[n]:
+            b = load_user_data_class()
+            if  n < 0 or n >=len([x for x in b if x]) or not b[n]:
                 st.warning("해당 반 정보가 없습니다.")
             else:
                 st.write(f"{n}번 반 학생 상태:")
@@ -188,12 +193,12 @@ else :
     if a == '나만의 반 삭제':
         n = st.number_input('삭제할 반의 코드를 입력하세요.', value=0, step=1)
         if st.button('삭제'):
-            b = st.session_state.b
+            b = load_user_data_ckass()
             if n < 0 or n >= len([x for x in st.session_state.b if x]) or not b[n]:
                 st.warning("해당 반 정보가 없거나 이미 삭제되었습니다.")
             else:
                 deleted_class = b[n]
                 b[n] = []
-                st.session_state.b = b
+                save_user_data_class(b) 
                 output_containers[n].empty()
                 st.success(f"{n}번 반이 삭제되었습니다. 삭제된 학생 명단: {deleted_class}")
