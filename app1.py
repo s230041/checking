@@ -220,6 +220,7 @@ else :
                                 b[idx] = n_li
                                 save_user_data_class(b)  # 반 데이터 저장
                                 output_containers[idx].write(f"{idx}번 반 생성 완료. 학생 명단: {n_li}")
+                                st.write(load_user_data_class)
                                 st.success(f"{idx}번 반이 성공적으로 생성되었습니다!")
                                 break
                     else:
