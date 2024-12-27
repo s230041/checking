@@ -81,7 +81,7 @@ def save_user_data_id(users_d):
     except Exception as e:
         st.write(f"ERROR: 사용자 데이터를 저장하는 중 오류 발생: {e}")
 
-def save_user_data_class(users_b):
+def save_user_data_class(users_b,n):
     try:
         # 기존 데이터 로드
         if os.path.exists(USER_DATA_FILE):
@@ -91,7 +91,7 @@ def save_user_data_class(users_b):
             data = {"b" : [[] for _ in range(8)],"d" : []}
 
         # "b" 데이터 업데이트
-        data["b"] = users_b
+        data["b"][n] = users_b
 
         # JSON 파일에 저장
         with open(USER_DATA_FILE, "w") as f:
@@ -216,9 +216,8 @@ else :
                     n_li = [int(x.strip()) for x in input_data.split(',')]  # 쉼표로 구분된 학번을 리스트로 변환
                     if len(n_li) == n:  # 입력된 학번 수가 반 인원 수와 일치할 경우
                         for idx, cls in enumerate(b):
-                            if not cls:  # 비어 있는 반에 새로 추가
-                                b[idx] = n_li
-                                save_user_data_class(b)  # 반 데이터 저장
+                            if not cls:  
+                                save_user_data_class(b,idx,n_li)  # 반 데이터 저장
                                 output_containers[idx].write(f"{idx}번 반 생성 완료. 학생 명단: {n_li}")
                                 st.write(load_user_data_class)
                                 st.success(f"{idx}번 반이 성공적으로 생성되었습니다!")
