@@ -214,12 +214,13 @@ else :
                 input_data = st.text_area('학번들을 입력해주세요 (쉼표로 구분)', "")
                 if input_data:
                     n_li = [int(x.strip()) for x in input_data.split(',')]  # 쉼표로 구분된 학번을 리스트로 변환
-                    if len(n_li) == n:  # 입력된 학번 수가 반 인원 수와 일치하면 반을 생성
-                        for idx in range(len([x for x in b if x])):
-                            if not b[idx]:
+                    if len(n_li) == n:  # 입력된 학번 수가 반 인원 수와 일치할 경우
+                        for idx, cls in enumerate(b):
+                            if not cls:  # 비어 있는 반에 새로 추가
                                 b[idx] = n_li
-                                save_user_data_class(b) 
-                                output_containers[len([x for x in b if x]) - 1].write(f"{len([x for x in b if x]) - 1}번 반 생성 완료. 학생 명단: {n_li}")
+                                save_user_data_class(b)  # 반 데이터 저장
+                                output_containers[idx].write(f"{idx}번 반 생성 완료. 학생 명단: {n_li}")
+                                st.success(f"{idx}번 반이 성공적으로 생성되었습니다!")
                                 break
                     else:
                         st.warning(f"입력된 학번 수가 반 인원수와 일치하지 않습니다. {n}명의 학번을 입력해주세요.")
