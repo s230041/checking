@@ -32,20 +32,14 @@ def save_data(data):
 
 
 def load_user_data_id():
-    try:
-        with open(USER_DATA_FILE, "r") as f:
-            data = json.load(f)
+    with open(USER_DATA_FILE, "r") as f:
+        data = json.load(f)
         return data.get("d", [])  # "d" 키가 없으면 빈 리스트 반환
-    except (json.JSONDecodeError, FileNotFoundError):  # JSON 오류 또는 파일 없음
-        return []
 
 def load_user_data_class():
-    try :
-        with open(USER_DATA_FILE, "r") as f:
-            data = json.load(f)
-            return data.get("b", [])
-    except (json.JSONDecodeError, FileNotFoundError):  # JSON 오류 또는 파일 없음
-        return [[]for _ in range(8)]
+    with open(USER_DATA_FILE, "r") as f:
+        data = json.load(f)
+        return data.get("b", [])
 # 사용자 데이터 저장 함수
 def save_user_data_id(users):
     with open(USER_DATA_FILE, "w") as f:
